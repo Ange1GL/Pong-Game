@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     private int player1Score;
     private int player2Score;   
 
-
+    public bool isPlaying;
 
 
     public void Player1Scored()
@@ -43,9 +43,18 @@ public class GameManager : MonoBehaviour
 
    private void ResetPosition()
     {
-        ball.GetComponent<Ball>().Reset();
-        player1.GetComponent<Players>().Reset();
-        player2.GetComponent<Players>().Reset();
+
+        if(isPlaying)
+        {
+            ball.GetComponent<Ball>().Reset();
+            player2.GetComponent<Players>().Reset();
+        }
+        else
+        {
+            ball.GetComponent<Ball>().Reset();
+            player1.GetComponent<Players>().Reset();
+            player2.GetComponent<Players>().Reset();
+        }
 
     }
 
