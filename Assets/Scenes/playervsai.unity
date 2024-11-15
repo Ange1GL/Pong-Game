@@ -332,6 +332,7 @@ MonoBehaviour:
   player2Goal: {fileID: 683549053}
   player1Text: {fileID: 261878203}
   player2Text: {fileID: 1295197610}
+  AIGame: 1
 --- !u!4 &160575275
 Transform:
   m_ObjectHideFlags: 0
@@ -1383,6 +1384,7 @@ GameObject:
   - component: {fileID: 2016836155}
   - component: {fileID: 2016836154}
   - component: {fileID: 2016836158}
+  - component: {fileID: 2016836159}
   m_Layer: 0
   m_Name: Player1
   m_TagString: Untagged
@@ -1536,7 +1538,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016836153}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7ca79a6b641333140ae55dd25f25a1b6, type: 3}
   m_Name: 
@@ -1544,6 +1546,20 @@ MonoBehaviour:
   player1: 1
   speed: 3
   rb: {fileID: 2016836154}
+--- !u!114 &2016836159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2016836153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eda50ed561930a747969f51188dbd599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  ball: {fileID: 158667829}
 --- !u!1 &2055375661
 GameObject:
   m_ObjectHideFlags: 0
