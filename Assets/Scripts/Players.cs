@@ -12,7 +12,6 @@ public class Players : MonoBehaviour
     private float move;
     private Vector2 startPos;
 
-
      
     void Start()
     {
