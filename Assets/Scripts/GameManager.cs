@@ -53,18 +53,12 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene("VictoryPlayer2");
         }
 
-        else if (player1Score >= maxScore)
+        else if ((player1Score >= maxScore) && (!AIGame))
         {
 
             SceneManager.LoadScene("VictoryPlayer1");
         }
 
-        
-
-        else if (player2Score >= maxScore)
-        {
-            SceneManager.LoadScene("VictoryPlayer2");
-        }
     }
 
 
