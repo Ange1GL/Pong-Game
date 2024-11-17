@@ -8,11 +8,13 @@ public class Ball : MonoBehaviour
     public float speed = 7;
     public Rigidbody2D rb;
     public Vector2 startPos;
+    private AudioSource audioSource;
 
     void Start()
     {
         startPos = transform.position;
         Launch();
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -36,5 +38,14 @@ public class Ball : MonoBehaviour
 
         rb.velocity = new Vector2(speed * x, speed * y);
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Reproducir el sonido al chocar
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
     }
 }

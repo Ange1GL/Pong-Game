@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using TMPro;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -14,8 +15,8 @@ public class GameManager : MonoBehaviour
     public GameObject player2;
     public GameObject player2Goal;
 
-    public Text player1Text;
-    public Text player2Text;
+    public TextMeshProUGUI player1TextTMP;
+    public TextMeshProUGUI player2TextTMP;
 
 
     private int player1Score;
@@ -26,18 +27,41 @@ public class GameManager : MonoBehaviour
 
     public int maxScore = 3;
 
+    private AudioSource audioSource;
 
 
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     public void CheckVictory()
     {
-        if (player1Score >= maxScore)
+
+        if ((player1Score >= maxScore) && (AIGame))
+        {
+            SceneManager.LoadScene("VictoryIA");
+        }
+
+        else if ((player2Score >= maxScore) && (AIGame))
+        {
+            SceneManager.LoadScene("VictoryPlayerSingle");
+        }
+
+        else if ((player2Score >= maxScore) && (!AIGame))
+        {
+            SceneManager.LoadScene("VictoryPlayer2");
+        }
+
+        else if (player1Score >= maxScore)
         {
 
             SceneManager.LoadScene("VictoryPlayer1");
         }
 
-        if (player2Score >= maxScore)
+        
+
+        else if (player2Score >= maxScore)
         {
             SceneManager.LoadScene("VictoryPlayer2");
         }
@@ -47,7 +71,8 @@ public class GameManager : MonoBehaviour
     public void Player1Scored()
     {
         player1Score++;
-        player1Text.text = player1Score.ToString();
+        player1TextTMP.text = player1Score.ToString();
+        PlayGoalSound();
         CheckVictory();
         ResetPosition();
     }
@@ -55,7 +80,8 @@ public class GameManager : MonoBehaviour
     public void Player2Scored()
     {
         player2Score++;
-        player2Text.text = player2Score.ToString();
+        player2TextTMP.text = player2Score.ToString();
+        PlayGoalSound();
         CheckVictory();
         ResetPosition();
     }
@@ -77,6 +103,15 @@ public class GameManager : MonoBehaviour
             ball.GetComponent<Ball>().Reset();
             player1.GetComponent<Players>().Reset();
             player2.GetComponent<Players>().Reset();
+        }
+    }
+
+
+    private void PlayGoalSound()
+    {
+        if (audioSource != null)
+        {
+            audioSource.Play();
         }
     }
 
