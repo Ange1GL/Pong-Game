@@ -13,8 +13,8 @@ public class Ball : MonoBehaviour
     void Start()
     {
         startPos = transform.position;
-        Launch();
         audioSource = GetComponent<AudioSource>();
+        StartCoroutine(WaitAndLaunch());
     }
 
 
@@ -28,7 +28,7 @@ public class Ball : MonoBehaviour
     {
         transform.position = startPos;
         rb.velocity = Vector2.zero;
-        Launch();
+        StartCoroutine(WaitAndLaunch());
     }
 
     public void Launch()
@@ -40,12 +40,19 @@ public class Ball : MonoBehaviour
 
     }
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Reproducir el sonido al chocar
+        
         if (audioSource != null)
         {
             audioSource.Play();
         }
+    }
+
+    private IEnumerator WaitAndLaunch()
+    {
+        yield return new WaitForSeconds(2); 
+        Launch();
     }
 }
